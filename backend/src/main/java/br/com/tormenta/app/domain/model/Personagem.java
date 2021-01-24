@@ -1,6 +1,8 @@
 package br.com.tormenta.app.domain.model;
 
 import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
@@ -19,7 +21,7 @@ public class Personagem implements Serializable {
     @Column(name = "per_id")
     private UUID id;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "per_pessoa_id", foreignKey = @ForeignKey(name = "fk_per_pes_id"))
     private Pessoa pessoa;
 
@@ -36,34 +38,34 @@ public class Personagem implements Serializable {
     private String classe;
 
     @Column(name = "per_nivel")
-    private String nivel;
+    private Integer nivel;
 
     @Column(name = "per_divindade")
     private String divindade;
 
     @Column(name = "per_vida_total")
-    private String vidaTotal;
+    private Integer vidaTotal;
 
     @Column(name = "per_mana_total")
-    private String manaTotal;
+    private Integer manaTotal;
 
     @Column(name = "per_vida_atual")
-    private String vidaAtual;
+    private Integer vidaAtual;
 
     @Column(name = "per_mana_atual")
-    private String manaAtual;
+    private Integer manaAtual;
 
     @Column(name = "per_deslocamento")
-    private String deslocamento;
+    private Integer deslocamento;
 
     @Column(name = "per_pontos_exp")
-    private String pontosExperiencia;
+    private Integer pontosExperiencia;
 
-    @CreatedDate
+    @CreationTimestamp
     @Column(name = "criado_em", nullable = false, updatable = false)
     private Date criado_em;
 
-    @LastModifiedDate
+    @UpdateTimestamp
     @Column(name = "alterado_em")
     private Date alterado_em;
 }

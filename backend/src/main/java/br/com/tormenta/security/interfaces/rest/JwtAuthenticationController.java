@@ -1,5 +1,7 @@
 package br.com.tormenta.security.interfaces.rest;
 
+import br.com.tormenta.app.domain.model.Pessoa;
+import br.com.tormenta.app.domain.repository.PessoaRepository;
 import br.com.tormenta.security.configuration.JwtTokenUtil;
 import br.com.tormenta.security.domain.model.JwtRequest;
 import br.com.tormenta.security.domain.model.JwtResponse;
@@ -28,16 +30,18 @@ public class JwtAuthenticationController {
     @Autowired
     private JwtUserDetailsService userDetailsService;
 
+    @Autowired
+    private PessoaRepository pessoaRepository;
+
     @PostMapping
     public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest) {
-
         authenticate(authenticationRequest.getEmail(), authenticationRequest.getSenha());
 
+        final Pessoa pessoa = pessoaRepository.findByEmail(authenticationRequest.getEmail()).get(0);
         final UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getEmail());
-
         final String token = jwtTokenUtil.generateToken(userDetails);
 
-        return ResponseEntity.ok(new JwtResponse(token));
+        return ResponseEntity.ok(new JwtResponse(pessoa.getId(), pessoa.getNome(), pessoa.getEmail(), token));
     }
 
     private void authenticate(String username, String password) {
