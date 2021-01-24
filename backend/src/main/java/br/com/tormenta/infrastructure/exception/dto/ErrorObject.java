@@ -1,4 +1,4 @@
-package br.com.tormenta.infrastructure.exceptions.dto;
+package br.com.tormenta.infrastructure.exception.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

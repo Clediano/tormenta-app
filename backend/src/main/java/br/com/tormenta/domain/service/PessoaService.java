@@ -2,10 +2,9 @@ package br.com.tormenta.domain.service;
 
 import br.com.tormenta.domain.model.Pessoa;
 import br.com.tormenta.domain.repository.PessoaRepository;
-import br.com.tormenta.infrastructure.exceptions.business.PessoaException;
+import br.com.tormenta.infrastructure.exception.business.PessoaException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,8 +17,13 @@ public class PessoaService {
     @Autowired
     private PessoaRepository pessoaRepository;
 
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
+
     public Pessoa salvar(Pessoa pessoa) {
         this.validar(pessoa);
+        String encodedPassword = bCryptPasswordEncoder.encode(pessoa.getSenha());
+        pessoa.setSenha(encodedPassword);
         return pessoaRepository.save(pessoa);
     }
 
