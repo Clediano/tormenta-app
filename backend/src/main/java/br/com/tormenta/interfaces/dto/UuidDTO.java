@@ -1,7 +1,12 @@
 package br.com.tormenta.interfaces.dto;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.UUID;
 
+@Getter
+@Setter
 public class UuidDTO {
     private UUID id;
 
