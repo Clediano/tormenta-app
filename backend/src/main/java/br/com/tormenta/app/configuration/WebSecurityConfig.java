@@ -1,7 +1,5 @@
 package br.com.tormenta.app.configuration;
 
-import br.com.tormenta.security.configuration.JwtAuthenticationEntryPoint;
-import br.com.tormenta.security.configuration.JwtRequestFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

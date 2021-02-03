@@ -1,12 +1,8 @@
 package br.com.tormenta.app.interfaces.rest;
 
-import br.com.tormenta.app.domain.model.Personagem;
-import br.com.tormenta.app.domain.model.Pessoa;
 import br.com.tormenta.app.domain.service.PersonagemService;
-import br.com.tormenta.app.domain.service.PessoaService;
-import br.com.tormenta.app.interfaces.dto.PersonagemDTO;
-import br.com.tormenta.app.interfaces.dto.PessoaDTO;
-import br.com.tormenta.app.interfaces.dto.UuidDTO;
+import br.com.tormenta.app.interfaces.dto.cadastro.PersonagemDTO;
+import br.com.tormenta.app.interfaces.dto.common.UuidDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,13 +22,13 @@ public class PersonagemController {
 
     @GetMapping("/pessoa/{id}")
     public ResponseEntity<?> buscarPessoa(@PathVariable("id") UUID pessoaId) {
-        List<Personagem> personagens = personagemService.buscarPeronagens(pessoaId);
+        List<br.com.tormenta.app.domain.model.Personagem> personagens = personagemService.buscarPeronagens(pessoaId);
         return new ResponseEntity<>(personagens, HttpStatus.OK);
     }
 
     @PostMapping
     public ResponseEntity<?> inserirPersonagem(@RequestBody @Valid PersonagemDTO personagemDTO) {
-        Personagem personagem = personagemService.salvar(personagemDTO.transformaParaPersonagem());
+        br.com.tormenta.app.domain.model.Personagem personagem = personagemService.salvar(personagemDTO.transformaParaPersonagem());
         return new ResponseEntity<>(new UuidDTO(personagem.getId()), HttpStatus.CREATED);
     }
 }

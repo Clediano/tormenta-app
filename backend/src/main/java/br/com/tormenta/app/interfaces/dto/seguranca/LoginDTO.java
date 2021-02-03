@@ -1,4 +1,4 @@
-package br.com.tormenta.app.interfaces.dto;
+package br.com.tormenta.app.interfaces.dto.seguranca;
 
 import br.com.tormenta.app.domain.model.Pessoa;
 import lombok.Getter;
@@ -8,10 +8,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
 @Getter
-public class PessoaDTO {
-
-    @NotBlank(message = "{name.not.blank}")
-    private String nome;
+public class LoginDTO {
 
     @NotBlank(message = "{email.not.blank}")
     @Email(message = "{email.not.valid}")
@@ -23,10 +20,8 @@ public class PessoaDTO {
 
     public Pessoa transformaParaPessoa() {
         Pessoa pessoa = new Pessoa();
-        pessoa.setNome(nome);
         pessoa.setEmail(email);
         pessoa.setSenha(senha);
-
         return pessoa;
     }
 

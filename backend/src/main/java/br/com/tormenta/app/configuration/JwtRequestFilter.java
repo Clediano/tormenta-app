@@ -1,7 +1,7 @@
-package br.com.tormenta.security.configuration;
+package br.com.tormenta.app.configuration;
 
 
-import br.com.tormenta.security.domain.service.JwtUserDetailsService;
+import br.com.tormenta.app.domain.service.JwtUserDetailsService;
 import io.jsonwebtoken.ExpiredJwtException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

@@ -1,4 +1,4 @@
-package br.com.tormenta.security.configuration;
+package br.com.tormenta.app.configuration;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

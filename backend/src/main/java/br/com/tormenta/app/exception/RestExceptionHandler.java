@@ -21,7 +21,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, org.springframework.http.HttpHeaders headers, HttpStatus status, WebRequest request) {
         List<ErrorObject> errors = ex.getBindingResult().getFieldErrors().stream()
-                .map(error -> new ErrorObject(error.getDefaultMessage(), error.getField(), error.getRejectedValue()))
+                .map(error -> new ErrorObject(error.getDefaultMessage(), error.getField()))
                 .collect(Collectors.toList());
         ErrorResponse errorResponse = new ErrorResponse("Requisição possui campos inválidos", status.value(), status.getReasonPhrase(), ex.getBindingResult().getObjectName(), errors);
         return new ResponseEntity<>(errorResponse, status);

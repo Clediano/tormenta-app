@@ -3,6 +3,7 @@ package br.com.tormenta.app.domain.service;
 import br.com.tormenta.app.domain.model.Pessoa;
 import br.com.tormenta.app.domain.repository.PessoaRepository;
 import br.com.tormenta.app.exception.business.PessoaException;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -11,6 +12,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+@RequiredArgsConstructor
 @Service
 public class PessoaService {
 

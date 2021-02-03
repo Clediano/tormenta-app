@@ -1,12 +1,12 @@
-package br.com.tormenta.security.domain.model;
+package br.com.tormenta.app.domain.model;
 
-import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.Getter;
 
 import java.io.Serializable;
 import java.util.UUID;
 
-@AllArgsConstructor
+@Data
 @Getter
 public class JwtResponse implements Serializable {
     private static final long serialVersionUID = -8091879091924046844L;

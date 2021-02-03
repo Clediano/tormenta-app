@@ -1,7 +1,8 @@
-package br.com.tormenta.security.domain.service;
+package br.com.tormenta.app.domain.service;
 
 import br.com.tormenta.app.domain.model.Pessoa;
 import br.com.tormenta.app.domain.repository.PessoaRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
+@RequiredArgsConstructor
 @Service
 public class JwtUserDetailsService implements UserDetailsService {
 

@@ -1,4 +1,4 @@
-package br.com.tormenta.security.configuration;
+package br.com.tormenta.app.configuration;
 
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;

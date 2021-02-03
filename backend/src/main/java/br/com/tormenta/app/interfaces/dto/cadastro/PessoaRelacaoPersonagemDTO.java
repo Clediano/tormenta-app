@@ -1,4 +1,4 @@
-package br.com.tormenta.app.interfaces.dto;
+package br.com.tormenta.app.interfaces.dto.cadastro;
 
 import lombok.Getter;
 

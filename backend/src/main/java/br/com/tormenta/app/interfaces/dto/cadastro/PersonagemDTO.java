@@ -1,6 +1,5 @@
-package br.com.tormenta.app.interfaces.dto;
+package br.com.tormenta.app.interfaces.dto.cadastro;
 
-import br.com.tormenta.app.domain.model.Personagem;
 import br.com.tormenta.app.domain.model.Pessoa;
 import lombok.Getter;
 
@@ -44,8 +43,8 @@ public class PersonagemDTO {
 
     private Integer pontosExperiencia;
 
-    public Personagem transformaParaPersonagem() {
-        Personagem personagem = new Personagem();
+    public br.com.tormenta.app.domain.model.Personagem transformaParaPersonagem() {
+        br.com.tormenta.app.domain.model.Personagem personagem = new br.com.tormenta.app.domain.model.Personagem();
         personagem.setNome(nome);
         personagem.setRaca(raca);
         personagem.setOrigem(origem);
