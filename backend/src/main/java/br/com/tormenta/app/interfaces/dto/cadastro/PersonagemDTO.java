@@ -1,16 +1,15 @@
 package br.com.tormenta.app.interfaces.dto.cadastro;
 
-import br.com.tormenta.app.domain.model.Pessoa;
-import lombok.Getter;
+import lombok.Data;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-@Getter
+@Data
 public class PersonagemDTO {
 
-    @NotBlank(message = "{name.not.blank}")
+    @NotBlank(message = "Campo nome é obrigatório")
     private String nome;
 
     @NotBlank(message = "Campo raça é obrigatório")
@@ -43,29 +42,5 @@ public class PersonagemDTO {
 
     private Integer pontosExperiencia;
 
-    public br.com.tormenta.app.domain.model.Personagem transformaParaPersonagem() {
-        br.com.tormenta.app.domain.model.Personagem personagem = new br.com.tormenta.app.domain.model.Personagem();
-        personagem.setNome(nome);
-        personagem.setRaca(raca);
-        personagem.setOrigem(origem);
-        personagem.setClasse(classe);
-        personagem.setNivel(nivel);
-        personagem.setDivindade(divindade);
-        personagem.setVidaTotal(vidaTotal);
-        personagem.setVidaAtual(vidaAtual);
-        personagem.setManaTotal(manaTotal);
-        personagem.setManaAtual(manaAtual);
-        personagem.setDeslocamento(deslocamento);
-        personagem.setPontosExperiencia(pontosExperiencia);
-        personagem.setPessoa(this.convertPessoaRelacaoPersonagemDTOParaPessoa());
-        return personagem;
-    }
-
-    private Pessoa convertPessoaRelacaoPersonagemDTOParaPessoa() {
-        Pessoa pessoa = new Pessoa();
-        pessoa.setId(this.pessoa.getId());
-
-        return pessoa;
-    }
 
 }
