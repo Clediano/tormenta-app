@@ -10,11 +10,11 @@ import javax.validation.constraints.NotBlank;
 @Getter
 public class LoginDTO {
 
-    @NotBlank(message = "{email.not.blank}")
-    @Email(message = "{email.not.valid}")
+    @NotBlank(message = "E-mail é um campo obrigatório")
+    @Email(message = "E-mail inválido, verifique")
     private String email;
 
-    @NotBlank(message = "{password.not.blank}")
+    @NotBlank(message = "A senha é um campo obrigatório")
     @Length(min = 6, message = "A senha deve conter pelo menos 6 caracteres")
     private String senha;
 

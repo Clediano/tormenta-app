@@ -1,4 +1,4 @@
-package br.com.tormenta.app.interfaces.rest;
+package br.com.tormenta.app.interfaces.rest.cadastro;
 
 import br.com.tormenta.app.domain.model.Pessoa;
 import br.com.tormenta.app.domain.service.PessoaService;
