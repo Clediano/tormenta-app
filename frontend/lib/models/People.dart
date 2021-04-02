@@ -1,5 +1,5 @@
 class People {
-  final String id, nome, email, senha;
+  final String? id, nome, email, senha;
 
   People({
     this.id,

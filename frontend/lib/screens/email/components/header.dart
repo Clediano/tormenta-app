@@ -6,7 +6,7 @@ import '../../../common/constants.dart';
 
 class Header extends StatelessWidget {
   const Header({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override

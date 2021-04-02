@@ -1,37 +1,58 @@
 import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:outlook/common/constants.dart';
 import 'package:outlook/common/shared_key.dart';
 import 'package:outlook/screens/login/request/login.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
+  @override
+  _LoginScreenState createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _usernameController = new TextEditingController();
   final TextEditingController _passwordController = new TextEditingController();
 
   void _login(context) async {
-    await login(
-      _usernameController.text,
-      _passwordController.text,
-    ).then(
-      (value) async {
-        SharedPreferences prefs = await SharedPreferences.getInstance();
-        await prefs.setString(SharedKey.USERNAME.toShortString(), value.nome);
-        await prefs.setString(SharedKey.EMAIL.toShortString(), value.email);
-        await prefs.setString(SharedKey.AUTH_TOKEN.toShortString(), value.token);
-        await prefs.setString(SharedKey.PEOPLE_ID.toShortString(), value.id);
-        Navigator.pushNamed(context, "/main");
-      },
-    ).catchError(
-      (onError) => {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('Usuário ou senha inválido'),
-            backgroundColor: kErrorColor,
-          ),
-        ),
-      },
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text('Usuário ou senha inválido'),
+        backgroundColor: kErrorColor,
+      ),
     );
+await login(_usernameController.text, _passwordController.text);
+    // await login(
+    //   _usernameController.text,
+    //   _passwordController.text,
+    // ).then(
+    //   (value) async {
+    //     SharedPreferences prefs = await SharedPreferences.getInstance();
+    //     await prefs.setString(SharedKey.USERNAME.toShortString(), value.nome!);
+    //     await prefs.setString(SharedKey.EMAIL.toShortString(), value.email!);
+    //     await prefs.setString(
+    //         SharedKey.AUTH_TOKEN.toShortString(), value.token!);
+    //     await prefs.setString(SharedKey.PEOPLE_ID.toShortString(), value.id!);
+    //     Navigator.pushNamed(context, "/main");
+    //   },
+    // ).catchError(
+    //   (onError) {
+    //     ScaffoldMessenger.of(context).showSnackBar(
+    //       const SnackBar(
+    //         content: Text('Usuário ou senha inválido'),
+    //         backgroundColor: kErrorColor,
+    //       ),
+    //     );
+    //   },
+    // );
+  }
+
+  @override
+  void dispose() {
+    _usernameController.dispose();
+    _passwordController.dispose();
+    super.dispose();
   }
 
   @override
@@ -73,7 +94,6 @@ class LoginScreen extends StatelessWidget {
                       children: [
                         TextField(
                           controller: _usernameController,
-                          onChanged: (value) {},
                           autofocus: true,
                           decoration: InputDecoration(
                             hintText: "E-mail",
@@ -98,7 +118,6 @@ class LoginScreen extends StatelessWidget {
                           obscureText: true,
                           enableSuggestions: false,
                           autocorrect: false,
-                          onChanged: (value) {},
                           decoration: InputDecoration(
                             hintText: "Password",
                             fillColor: kBgDarkColor,
@@ -126,7 +145,7 @@ class LoginScreen extends StatelessWidget {
                                 textAlign: TextAlign.right,
                                 style: Theme.of(context)
                                     .textTheme
-                                    .button
+                                    .button!
                                     .copyWith(color: kPrimaryColor),
                               ),
                               style: TextButton.styleFrom(
@@ -143,9 +162,7 @@ class LoginScreen extends StatelessWidget {
                     ),
                   ),
                   TextButton.icon(
-                    onPressed: () {
-                      _login(context);
-                    },
+                    onPressed: () => _login(context),
                     style: TextButton.styleFrom(
                       minimumSize: Size(300, 50),
                       primary: kTextColor,

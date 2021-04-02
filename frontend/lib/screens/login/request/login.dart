@@ -8,7 +8,7 @@ Future<User> login(String email, String senha) async {
   final response = await createDio().post("/authenticate",
       data: jsonEncode({'email': email, "senha": senha}),
       options: Options(headers: {"requiresToken": false}));
-
+  print("CHEGUEEEEEEEEEEI");
   if (response.statusCode == 200) {
     return User.fromJson(response.data);
   } else {

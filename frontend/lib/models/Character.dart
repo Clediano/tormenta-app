@@ -1,6 +1,6 @@
 class Character {
-  final String id, nome, raca, origem, classe, divindade;
-  final int nivel,
+  final String? id, nome, raca, origem, classe, divindade;
+  final int? nivel,
       vidaTotal,
       manaTotal,
       vidaAtual,

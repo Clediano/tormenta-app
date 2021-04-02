@@ -1,5 +1,5 @@
 class User {
-  final String id, nome, email, token;
+  final String? id, nome, email, token;
 
   User({
     this.id,

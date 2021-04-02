@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:outlook/common/constants.dart';
 import 'package:outlook/common/responsive.dart';
 import 'package:outlook/common/shared_key.dart';
 import 'package:outlook/screens/email/email_screen.dart';
@@ -11,29 +12,91 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-
   @override
   void initState() {
     super.initState();
-    
+
     _verifyLogin();
   }
 
   _verifyLogin() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    String token = prefs.getString(SharedKey.AUTH_TOKEN.toShortString());
+    String? token = prefs.getString(SharedKey.AUTH_TOKEN.toShortString());
 
     if (token == null) {
-      await prefs.clear();
-      Navigator.pushNamed(context, "/");
+      _logount();
     }
+  }
+
+  _logount() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    await prefs.clear();
+    Navigator.pushNamed(context, "/");
+  }
+
+  _showAlertDialog(BuildContext ctx, Function onConfirm, Function onCancel) {
+    AlertDialog alerta = AlertDialog(
+      title: Text("Confirmation"),
+      content: Text("Are you sure you want to quit?"),
+      actions: [
+        TextButton(
+          style: TextButton.styleFrom(
+            backgroundColor: kPrimaryColor,
+            padding: EdgeInsets.symmetric(
+              horizontal: kDefaultPadding * 0.8,
+              vertical: kDefaultPadding * 0.5,
+            ),
+          ),
+          onPressed: onConfirm as void Function()?,
+          child: Text(
+            "Confirm",
+            style: TextStyle(color: kSecondaryColor),
+          ),
+        ),
+        TextButton(
+          onPressed: onCancel as void Function()?,
+          child: Text(
+            "Cancel",
+            style: TextStyle(color: kPrimaryColor),
+          ),
+        ),
+      ],
+    );
+    showDialog(
+      context: ctx,
+      builder: (BuildContext ctx) {
+        return alerta;
+      },
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     Size _size = MediaQuery.of(context).size;
-
     return Scaffold(
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        title: Image.asset(
+          "assets/images/logo-tormenta-preto.png",
+          height: 25,
+          color: kSecondaryColor,
+        ),
+        backgroundColor: kPrimaryColor,
+        actions: [
+          IconButton(
+            icon: Icon(Icons.logout),
+            onPressed: () {
+              _showAlertDialog(
+                context,
+                _logount,
+                () => Navigator.of(context).pop(),
+              );
+            },
+            padding: EdgeInsets.symmetric(horizontal: kDefaultPadding * 0.75),
+          ),
+        ],
+      ),
       body: Responsive(
         mobile: ListOfCharacters(),
         tablet: Row(

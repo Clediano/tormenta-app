@@ -30,7 +30,7 @@ class _SignupScreenState extends State<SignupScreen> {
       (value) => Navigator.pushNamed(context, "/"),
       (error) {
         print(error);
-        Map<String, dynamic> err = jsonDecode(error.toString());
+        Map<String, dynamic>? err = jsonDecode(error.toString());
         _showMessageValidation(
           context: context,
           message: err != null ? err['message'] : "Failed to create your account. Try again in a few minutes.",
@@ -40,7 +40,7 @@ class _SignupScreenState extends State<SignupScreen> {
   }
 
   _showMessageValidation(
-      {BuildContext context, String message, Color bgColor = kErrorColor}) {
+      {required BuildContext context, required String message, Color bgColor = kErrorColor}) {
     final scaffold = ScaffoldMessenger.of(context);
     scaffold.showSnackBar(
       SnackBar(
@@ -92,7 +92,7 @@ class _SignupScreenState extends State<SignupScreen> {
                           children: [
                             TextFormField(
                               validator: (value) {
-                                if (value.isEmpty) {
+                                if (value!.isEmpty) {
                                   return 'This field is required';
                                 }
                                 return null;
@@ -120,7 +120,7 @@ class _SignupScreenState extends State<SignupScreen> {
                             SizedBox(height: kDefaultPadding),
                             TextFormField(
                               validator: (value) {
-                                if (value.isEmpty) {
+                                if (value!.isEmpty) {
                                   return 'This field is required';
                                 }
                                 if (!RegExp(
@@ -154,7 +154,7 @@ class _SignupScreenState extends State<SignupScreen> {
                             SizedBox(height: kDefaultPadding),
                             TextFormField(
                               validator: (value) {
-                                if (value.isEmpty) {
+                                if (value!.isEmpty) {
                                   return 'This field is required';
                                 }
                                 if (value.length < 8) {
@@ -186,7 +186,7 @@ class _SignupScreenState extends State<SignupScreen> {
                             SizedBox(height: kDefaultPadding),
                             TextFormField(
                               validator: (value) {
-                                if (value.isEmpty) {
+                                if (value!.isEmpty) {
                                   return 'This field is required';
                                 }
                                 if (value != _passwordController.text) {
@@ -227,7 +227,7 @@ class _SignupScreenState extends State<SignupScreen> {
                                     textAlign: TextAlign.right,
                                     style: Theme.of(context)
                                         .textTheme
-                                        .button
+                                        .button!
                                         .copyWith(color: kPrimaryColor),
                                   ),
                                   style: TextButton.styleFrom(
@@ -245,7 +245,7 @@ class _SignupScreenState extends State<SignupScreen> {
                       ),
                       TextButton.icon(
                         onPressed: () {
-                          if (_formKey.currentState.validate()) {
+                          if (_formKey.currentState!.validate()) {
                             _createAccount(context);
                           }
                         },
