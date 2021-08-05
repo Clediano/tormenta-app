@@ -1,6 +1,5 @@
-package br.com.tormenta.app.interfaces.dto.seguranca;
+package br.com.tormenta.app.interfaces.dto.security;
 
-import br.com.tormenta.app.domain.model.Pessoa;
 import lombok.Getter;
 import org.hibernate.validator.constraints.Length;
 
@@ -16,13 +15,5 @@ public class LoginDTO {
 
     @NotBlank(message = "A senha é um campo obrigatório")
     @Length(min = 6, message = "A senha deve conter pelo menos 6 caracteres")
-    private String senha;
-
-    public Pessoa transformaParaPessoa() {
-        Pessoa pessoa = new Pessoa();
-        pessoa.setEmail(email);
-        pessoa.setSenha(senha);
-        return pessoa;
-    }
-
+    private String password;
 }

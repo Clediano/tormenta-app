@@ -1,7 +1,7 @@
 package br.com.tormenta.app.domain.service;
 
-import br.com.tormenta.app.domain.model.Pessoa;
-import br.com.tormenta.app.domain.repository.PessoaRepository;
+import br.com.tormenta.app.domain.model.Person;
+import br.com.tormenta.app.domain.repository.PersonRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
@@ -18,13 +18,13 @@ import java.util.List;
 public class JwtUserDetailsService implements UserDetailsService {
 
     @Autowired
-    private PessoaRepository pessoaRepository;
+    private PersonRepository personRepository;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        List<Pessoa> pessoa = pessoaRepository.findByEmail(username);
-        if (!pessoa.isEmpty()) {
-            return new User(pessoa.get(0).getEmail(), pessoa.get(0).getSenha(), new ArrayList<>());
+        List<Person> person = personRepository.findByEmail(username);
+        if (!person.isEmpty()) {
+            return new User(person.get(0).getEmail(), person.get(0).getPassword(), new ArrayList<>());
         } else {
             throw new UsernameNotFoundException("Usuário " + username + " não encontrado");
         }

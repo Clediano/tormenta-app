@@ -1,5 +1,6 @@
-package br.com.tormenta.app.interfaces.dto.cadastro;
+package br.com.tormenta.app.interfaces.dto.register;
 
+import lombok.Builder;
 import lombok.Data;
 
 import javax.validation.Valid;
@@ -8,17 +9,18 @@ import javax.validation.constraints.NotNull;
 import java.util.UUID;
 
 @Data
-public class PersonagemDTO {
+@Builder
+public class CharacterDTO {
 
     private UUID id;
 
     @NotBlank(message = "Campo nome é obrigatório")
-    private String nome;
+    private String name;
 
     @NotBlank(message = "Campo raça é obrigatório")
-    private String raca;
+    private String breed;
 
-    private String origem;
+    private String origin;
 
     @NotBlank(message = "Campo classe é obrigatório")
     private String classe;
@@ -26,24 +28,22 @@ public class PersonagemDTO {
     @NotNull(message = "Campo nivel é obrigatório")
     private Integer nivel;
 
-    private String divindade;
+    private String divinity;
 
     @NotNull(message = "Campo vida total é obrigatório")
-    private Integer vidaTotal;
+    private Integer lifeTotal;
 
     @NotNull(message = "Campo mana total é obrigatório")
     private Integer manaTotal;
 
     @Valid
-    private PessoaRelacaoPersonagemDTO pessoa;
+    private PersonRelationCharacterDTO person;
 
-    private Integer vidaAtual;
+    private Integer currentLife;
 
-    private Integer manaAtual;
+    private Integer currentMana;
 
-    private Integer deslocamento;
+    private Integer displacement;
 
-    private Integer pontosExperiencia;
-
-
+    private Integer experiencePoints;
 }

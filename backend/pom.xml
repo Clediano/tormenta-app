@@ -19,6 +19,7 @@
         <org.mapstruct.version>1.4.1.Final</org.mapstruct.version>
         <java.version>11</java.version>
     </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -49,8 +50,7 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.16</version>
-            <scope>provided</scope>
+            <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -66,24 +66,13 @@
             <artifactId>hibernate-validator</artifactId>
             <version>6.0.18.Final</version>
         </dependency>
-        <dependency>
-            <groupId>org.mapstruct</groupId>
-            <artifactId>mapstruct</artifactId>
-            <version>${org.mapstruct.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.mapstruct</groupId>
-            <artifactId>mapstruct-processor</artifactId>
-            <version>${org.mapstruct.version}</version>
-            <scope>provided</scope>
-        </dependency>
     </dependencies>
-
     <build>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>2.5.3</version>
                 <configuration>
                     <excludes>
                         <exclude>
@@ -93,29 +82,8 @@
                     </excludes>
                 </configuration>
             </plugin>
-            <plugin>
-                <groupId>org.bsc.maven</groupId>
-                <artifactId>maven-processor-plugin</artifactId>
-                <version>3.3.3</version>
-                <executions>
-                    <execution>
-                        <id>process</id>
-                        <goals>
-                            <goal>process</goal>
-                        </goals>
-                        <phase>generate-sources</phase>
-                        <configuration>
-                            <processors>
-                                <!-- list of processors to use -->
-                                <processor>org.mapstruct.ap.MappingProcessor</processor>
-                            </processors>
-                            <outputDirectory>${basedir}/target/generated-sources-mappers</outputDirectory>
-                            <compilerArguments>-source 11 -target 11</compilerArguments>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
         </plugins>
+
     </build>
 
 </project>
